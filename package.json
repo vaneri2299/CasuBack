@@ -1,0 +1,29 @@
+{
+  "name": "casuback",
+  "version": "0.1.0",
+  "description": "Sitio e-commerce del vivero Casu",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaneri2299/CasuBack.git"
+  },
+  "keywords": [
+    "casu",
+    "back",
+    "e-commerce"
+  ],
+  "author": "Ariana Medina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vaneri2299/CasuBack/issues"
+  },
+  "homepage": "https://github.com/vaneri2299/CasuBack#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  }
+}
