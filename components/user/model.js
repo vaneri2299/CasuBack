@@ -4,6 +4,23 @@ const Schema = mongoose.Schema;
 
 const mySchema = new Schema({
   nombre: String,
+  apellido: String,
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  telefono: String,
+  creado: Date,
+  fotoPerfil: {
+    data: Buffer,
+    contentType: String,
+  },
+  TDC: String,
+  Crypto: String,
 });
 
 const model = mongoose.model("Usuarios", mySchema, "Usuarios");

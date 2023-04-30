@@ -3,12 +3,27 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const mySchema = new Schema({
-  id: {
+  nombre: {
+    type: String,
+    required: true,
+  },
+  precio: {
     type: Number,
     required: true,
   },
-  nombre: String,
-  fechaCreado: String,
+  descripcion: {
+    type: String,
+    required: true,
+  },
+  categoria: {
+    type: Schema.ObjectId,
+    ref: "Categorias",
+    required: true,
+  },
+  cantidad: {
+    type: Number,
+    required: true,
+  },
 });
 
 const model = mongoose.model("Productos", mySchema, "Productos");
