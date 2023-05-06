@@ -1,10 +1,10 @@
 const Model = require("./model");
 
-const addProducto = (user) => {
-  const myUser = new Model(user);
-  return myUser.save();
+const addCarrito = (carrito) => {
+  const myCarrito = new Model(carrito);
+  return myCarrito.save();
 };
 
 module.exports = {
-  add: addProducto,
+  add: addCarrito,
 };

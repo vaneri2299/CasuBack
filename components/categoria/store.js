@@ -6,7 +6,6 @@ const Model = require("./model");
 // };
 
 const getCategorias = () => {
-  // const productos = await ;
   return Model.find();
 };
 

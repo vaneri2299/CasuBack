@@ -5,9 +5,9 @@ const controller = require("./controller");
 
 router.post("/", (req, res) => {
   controller
-    .addUser(req.body.nombre)
+    .addCarrito(req.body)
     .then(() => {
-      response.success(req, res, "Usuario creado existomente");
+      response.success(req, res, "Carrito creado existomente");
     })
     .catch((e) => {
       response.error(req, res, 400, "Información invalida");

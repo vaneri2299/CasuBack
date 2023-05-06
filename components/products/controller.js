@@ -1,14 +1,14 @@
 const store = require("./store");
 const moment = require("moment");
 
-const addProducto = (producto) => {
+const addProducto = (producto, imagenProducto) => {
   return new Promise((resolve, reject) => {
-    if (!producto) {
+    if (!producto || !imagenProducto) {
       console.log("No hay producto");
       reject("Datos incorrectos");
       return;
     }
-    producto["fechaCreado"] = moment().format("DD-MM-YYYY");
+    producto.imagen = "http://localhost:3000/app/files/" + imagenProducto.filename;
     resolve(store.add(producto));
   });
 };

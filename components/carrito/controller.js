@@ -1,9 +1,9 @@
 const store = require("./store");
 const moment = require("moment");
 
-const addUser = (nombre) => {
-  if (!nombre) {
-    console.log("No hay nombre");
+const addCarrito = (usuario) => {
+  if (!usuario) {
+    console.log("No hay usuario");
     return Promise.reject("Datos incorrectos");
   }
 
@@ -14,5 +14,5 @@ const addUser = (nombre) => {
 };
 
 module.exports = {
-  addUser,
+  addCarrito,
 };

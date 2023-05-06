@@ -2,8 +2,6 @@ const Model = require("./model");
 
 const addProducto = (producto) => {
   const myProducto = new Model(producto);
-  console.log("aqui", producto);
-  console.log(myProducto);
   myProducto.save();
 };
 
