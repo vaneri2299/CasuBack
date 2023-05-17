@@ -5,6 +5,11 @@ const addCarrito = (carrito) => {
   return myCarrito.save();
 };
 
+const removeCarrito = (id) => {
+  return Model.deleteOne({ _id: id });
+};
+
 module.exports = {
   add: addCarrito,
+  remove: removeCarrito,
 };

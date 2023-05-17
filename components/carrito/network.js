@@ -14,4 +14,15 @@ router.post("/", (req, res) => {
     });
 });
 
+router.delete("/:id", (req, res) => {
+  controller
+    .deleteCarrito(req.params.id)
+    .then(() => {
+      response.success(req, res, "Eliminación existosa");
+    })
+    .catch((e) => {
+      response.error(req, res, 500, "Error interno");
+    });
+});
+
 module.exports = router;
