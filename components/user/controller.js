@@ -1,6 +1,6 @@
 const store = require("./store");
 const moment = require("moment");
-const crypto = require('crypto');
+const crypto = require("crypto");
 
 const addUser = (nombre) => {
   if (!nombre) {
@@ -28,7 +28,7 @@ const sendCode = (email) => {
     secure: false,
     auth: {
       user: "medina2.ariana9@gmail.com",
-      pass: "pkoepxdllsvjlcaa",
+      pass: process.env.EMAIL,
     },
   });
 
@@ -48,7 +48,7 @@ const sendCode = (email) => {
         console.log("Correo electrónico enviado con éxito");
       }
     });
-  })
+  });
 };
 
 const verifyCode = (email, codigoIngresado) => {
@@ -58,7 +58,8 @@ const verifyCode = (email, codigoIngresado) => {
   }
 
   return new Promise((resolve, reject) => {
-    if (codigoRegistro !== codigoIngresado) { // Utilizar la variable global para comparar el código ingresado
+    if (codigoRegistro !== codigoIngresado) {
+      // Utilizar la variable global para comparar el código ingresado
       console.error("Código inválido");
       reject("Código inválido");
     } else {
@@ -68,9 +69,8 @@ const verifyCode = (email, codigoIngresado) => {
   });
 };
 
-
 module.exports = {
   addUser,
   sendCode,
-  verifyCode
+  verifyCode,
 };
