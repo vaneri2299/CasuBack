@@ -1,6 +1,4 @@
 const express = require("express");
-const nodemailer = require('nodemailer');
-const crypto = require('crypto');
 const router = express.Router();
 const response = require("../../network/response");
 const controller = require("./controller");

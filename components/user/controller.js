@@ -1,6 +1,7 @@
 const store = require("./store");
 const moment = require("moment");
 const crypto = require("crypto");
+const nodemailer = require('nodemailer');
 
 const addUser = (nombre) => {
   if (!nombre) {
