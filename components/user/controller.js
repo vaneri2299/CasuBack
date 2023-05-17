@@ -15,7 +15,6 @@ const addUser = (nombre) => {
   return store.add(user);
 };
 
-let codigoRegistro;
 const sendCode = (email) => {
   if (!email) {
     console.log("No hay email");
@@ -47,6 +46,7 @@ const sendCode = (email) => {
         reject(error);
       } else {
         console.log("Correo electrónico enviado con éxito");
+        resolve();
       }
     });
   });
