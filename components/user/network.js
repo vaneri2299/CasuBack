@@ -18,7 +18,7 @@ router.post("/send-code", (req, res) => {
   controller
     .sendCode(req.body.email)
     .then(() => {
-      response.success(req, res, "Correo enviado existosamente");
+      response.success(req, res, [], "Correo enviado existosamente");
     })
     .catch((error) => {
       console.error("Error al enviar el correo electrónico", error);
@@ -26,7 +26,7 @@ router.post("/send-code", (req, res) => {
     });
 });
 
-router.post('/api/verify-code', (req, res) => {
+router.post("/api/verify-code", (req, res) => {
   const email = req.body.email;
   const codigoIngresado = req.body.codigo;
   controller
