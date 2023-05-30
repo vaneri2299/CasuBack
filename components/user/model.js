@@ -14,7 +14,7 @@ const mySchema = new Schema({
     required: true,
   },
   telefono: String,
-  creado: Date,
+  creado: String,
   fotoPerfil: {
     data: Buffer,
     contentType: String,

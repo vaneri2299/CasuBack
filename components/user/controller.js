@@ -1,16 +1,17 @@
 const store = require("./store");
 const moment = require("moment");
 const crypto = require("crypto");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
-const addUser = (nombre) => {
-  if (!nombre) {
-    console.log("No hay nombre");
+const addUser = (email, password) => {
+  if (!email || !password) {
+    console.log("No hay email o password");
     return Promise.reject("Datos incorrectos");
   }
-
   const user = {
-    nombre: nombre,
+    email: email,
+    password: password,
+    creado: moment().format("DD-MM-YYYY"),
   };
   return store.add(user);
 };
@@ -70,8 +71,23 @@ const verifyCode = (email, codigoIngresado) => {
   });
 };
 
+const userExist = async (email) => {
+  if (!email) {
+    console.log("No hay email");
+    return Promise.reject("No hay email");
+  }
+  const exist = await store.emailExists(email);
+  if (exist) {
+    console.log(exist, email)
+    return Promise.reject("El email ya está registrado");
+  } else {
+    return Promise.resolve("Puedes continuar");
+  }
+};
+
 module.exports = {
   addUser,
   sendCode,
   verifyCode,
+  userExist,
 };
