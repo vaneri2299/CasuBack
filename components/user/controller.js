@@ -2,6 +2,8 @@ const store = require("./store");
 const moment = require("moment");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const addUser = (email, password) => {
   if (!email || !password) {
@@ -78,10 +80,32 @@ const userExist = async (email) => {
   }
   const exist = await store.emailExists(email);
   if (exist) {
-    console.log(exist, email)
+    console.log(exist, email);
     return Promise.reject("El email ya está registrado");
   } else {
     return Promise.resolve("Puedes continuar");
+  }
+};
+
+const userHash = async (email, password) => {
+  if (!email || !password) {
+    console.log("No hay email o password");
+    return Promise.reject("No hay email o password");
+  }
+  const exist = await store.emailExistsHash(email);
+  if (exist && exist !== null) {
+    const sonIguales = bcrypt.compareSync(password, exist.password);
+    console.log(exist.password, password, sonIguales);
+    if (sonIguales) {
+      console.log("Bienvenido");
+      const token = jwt.sign({ email: exist.email }, process.env.TOKEN_SECRET);
+      return Promise.resolve(token);
+    } else {
+      console.log("La contraseña es incorrecta");
+      return Promise.reject("Fallido");
+    }
+  }else{
+     return Promise.reject("Fallido");
   }
 };
 
@@ -90,4 +114,5 @@ module.exports = {
   sendCode,
   verifyCode,
   userExist,
+  userHash,
 };

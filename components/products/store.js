@@ -10,6 +10,13 @@ const getProductos = async () => {
   return productos;
 };
 
+const getProducto = async (id) => {
+  const producto = await Model.findOne({ _id: id })
+    .populate("categoria", "nombre"); // Incluir la información de la categoría
+
+  return producto;
+};
+
 const updateProducto = async (id, productoNombre) => {
   const myProducto = await Model.findOne({ _id: id });
   myProducto.nombre = productoNombre;
@@ -23,6 +30,7 @@ const removeProducto = (id) => {
 
 module.exports = {
   add: addProducto,
+  get: getProducto,
   list: getProductos,
   update: updateProducto,
   remove: removeProducto,

@@ -17,4 +17,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 router(app);
 
 app.listen(config.port);
+app.use('/assets', express.static('./assets'));
 console.log("Escuchando");

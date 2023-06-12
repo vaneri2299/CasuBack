@@ -53,9 +53,20 @@ router.post("/exist", (req, res) => {
       response.success(req, res, "", "Código enviado");
     })
     .catch((error) => {
-      console.log("AQUi");
       console.error(error);
       response.error(req, res, 500, "El usuario ya existe. Inicia sesión");
+    });
+});
+
+router.post("/hash", (req, res) => {
+  controller
+    .userHash(req.body.email, req.body.password)
+    .then((data) => {
+      response.success(req, res, data, "Bienvenido");
+    })
+    .catch((error) => {
+      console.error(error);
+      response.error(req, res, 500, "Informacion inválida");
     });
 });
 

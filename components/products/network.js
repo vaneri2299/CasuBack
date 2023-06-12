@@ -3,8 +3,26 @@ const multer = require("multer");
 const router = express.Router();
 const response = require("../../network/response");
 const controller = require("./controller");
+const path = require("path");
 
 const upload = multer({ dest: "public/files/" });
+
+router.get("/:id", (req, res) => {
+  controller
+    .getProducto(req.params.id)
+    .then((producto) => {
+      response.success(
+        req,
+        res,
+        producto,
+        "Producto obtenido correctamente"
+      );
+    })
+    .catch((e) => {
+      console.log(e)
+      response.error(req, res, 500, "Error inesperado");
+    });
+});
 
 router.get("/", (req, res) => {
   controller
@@ -14,10 +32,31 @@ router.get("/", (req, res) => {
         req,
         res,
         productoList,
-        "Productos obtenido correctamente"
+        "Productos obtenidos correctamente"
       );
     })
     .catch((e) => {
+      response.error(req, res, 500, "Error inesperado");
+    });
+});
+
+const mime = require('mime-types');
+const fs = require('fs');
+
+router.post("/imagen", function (req, res) {
+  controller
+    .getImagen()
+    .then(() => {
+      const imagePath = path.join(__dirname, `../../assets/${req.body.url}`);
+      const contentType = mime.contentType(req.body.url);
+      if (contentType) {
+        res.set('Content-Type', contentType);
+      }
+      const imageBuffer = fs.readFileSync(imagePath);
+      res.send(imageBuffer);
+    })
+    .catch((error) => {
+      console.log(error);
       response.error(req, res, 500, "Error inesperado");
     });
 });

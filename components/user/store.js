@@ -16,7 +16,13 @@ const emailExists = async (email) => {
   return exists !== null ? true : false;
 };
 
+const emailExistsHash = async (email) => {
+  const user = await Model.findOne({ email: email });
+  return user;
+};
+
 module.exports = {
   add: addUsuario,
   emailExists: emailExists,
+  emailExistsHash: emailExistsHash,
 };
