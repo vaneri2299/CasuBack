@@ -95,17 +95,20 @@ const userHash = async (email, password) => {
   const exist = await store.emailExistsHash(email);
   if (exist && exist !== null) {
     const sonIguales = bcrypt.compareSync(password, exist.password);
-    console.log(exist.password, password, sonIguales);
     if (sonIguales) {
       console.log("Bienvenido");
+      console.log(exist);
+      console.log(exist.admin);
       const token = jwt.sign({ email: exist.email }, process.env.TOKEN_SECRET);
-      return Promise.resolve(token);
+      const data = { token: token, isAdmin: exist.admin };
+      console.log(data)
+      return Promise.resolve(data);
     } else {
       console.log("La contraseña es incorrecta");
       return Promise.reject("Fallido");
     }
-  }else{
-     return Promise.reject("Fallido");
+  } else {
+    return Promise.reject("Fallido");
   }
 };
 
