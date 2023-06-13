@@ -10,8 +10,6 @@ const addProducto = (producto, imagenProducto) => {
       reject("Datos incorrectos");
       return;
     }
-    producto.imagen =
-      "http://localhost:3000/app/files/" + imagenProducto.filename;
     resolve(store.add(producto));
   });
 };

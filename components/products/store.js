@@ -6,8 +6,11 @@ const addProducto = (producto) => {
 };
 
 const getProductos = async () => {
-  const productos = await Model.find();
-  return productos;
+  const productos = await Model.find().populate('categoria', '-_id nombre');
+  return productos.map(producto => ({
+    ...producto.toJSON(),
+    categoria: producto.categoria.nombre
+  }));
 };
 
 const getProducto = async (id) => {
