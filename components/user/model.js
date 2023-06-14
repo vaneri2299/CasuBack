@@ -21,7 +21,7 @@ const mySchema = new Schema({
   },
   TDC: String,
   Crypto: String,
-  isAdmin: String,
+  isAdmin: Boolean,
 });
 
 const model = mongoose.model("Usuarios", mySchema, "Usuarios");
