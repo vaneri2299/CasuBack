@@ -98,10 +98,10 @@ const userHash = async (email, password) => {
     if (sonIguales) {
       console.log("Bienvenido");
       console.log(exist);
-      console.log(exist.admin);
+      console.log(exist.isAdmin);
       const token = jwt.sign({ email: exist.email }, process.env.TOKEN_SECRET);
-      const data = { token: token, isAdmin: exist.admin };
-      console.log(data)
+      const data = {token: token, isAdmin: exist.isAdmin};
+      console.log(data);
       return Promise.resolve(data);
     } else {
       console.log("La contraseña es incorrecta");
